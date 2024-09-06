@@ -66,6 +66,15 @@ Downloads the avatar image and returns the URL and image buffer.
     Returns: A promise that resolves to an object containing:
         url: The URL used to request the avatar image.
         image: The image data as a Buffer.
+
+downloadAvatarByUrl(url: string): Promise<{ url: string; image: Buffer }>
+
+Downloads the avatar image and returns the URL and image buffer.
+
+    url: string;
+    Returns: A promise that resolves to an object containing:
+        url: The URL used to request the avatar image.
+        image: The image data as a Buffer.
 ```
 
 ### Configuration Options

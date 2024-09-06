@@ -38,7 +38,7 @@ export class UiAvatars extends UIAvatarSettings {
 
     return url.slice(0, -1);
   }
-  async downloadByUrl(url: string): Promise<ResponseAvatarType> {
+  async downloadAvatarByUrl(url: string): Promise<ResponseAvatarType> {
     try {
       const response = await axios.get(url, {
         responseType: "arraybuffer",
