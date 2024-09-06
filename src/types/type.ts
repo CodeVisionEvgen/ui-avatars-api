@@ -37,7 +37,11 @@ export type UiAvatarsSettingsType = {
    */
   uppercase?: boolean;
 };
-
 export class UIAvatarSettings {
   defaultOptions: UiAvatarsSettingsType;
 }
+
+export type ResponseAvatarType = {
+  url: string;
+  image: Buffer;
+};

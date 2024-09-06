@@ -1,5 +1,10 @@
 import axios from "axios";
-import { UIAvatarSettings, UiAvatarsSettingsType } from "../../types/index";
+import {
+  ResponseAvatarType,
+  UIAvatarSettings,
+  UiAvatarsSettingsType,
+} from "../types/type";
+
 export class UiAvatars extends UIAvatarSettings {
   /**
    * @param options default options for all avatars
@@ -33,10 +38,19 @@ export class UiAvatars extends UIAvatarSettings {
 
     return url.slice(0, -1);
   }
-  async downloadAvatar(options?: UiAvatarsSettingsType): Promise<{
-    url: string;
-    image: Buffer;
-  }> {
+  async downloadByUrl(url: string): Promise<ResponseAvatarType> {
+    try {
+      const response = await axios.get(url, {
+        responseType: "arraybuffer",
+      });
+      return { url, image: response.data };
+    } catch (error) {
+      throw new Error(`Failed to download avatar: ${error.message}`);
+    }
+  }
+  async downloadAvatar(
+    options?: UiAvatarsSettingsType
+  ): Promise<ResponseAvatarType> {
     const url = this.createUrl(options);
     try {
       const response = await axios.get(url, {
